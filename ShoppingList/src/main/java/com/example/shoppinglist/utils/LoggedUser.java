@@ -14,19 +14,19 @@ import org.springframework.web.context.annotation.SessionScope;
 @SessionScope
 public class LoggedUser {
 
-    private Long id;
+    private long id;
     private String username;
 
     public void login(User user) {
-        this.id = getId();
+        this.id = user.getId();
         this.username = user.getUsername();
     }
     public void logout() {
-        this.id = null;
+        this.id = 0;
         this.username = null;
     }
 
     public boolean isLogged() {
-        return this.getId() != null;
+        return this.getId() != 0;
     }
 }

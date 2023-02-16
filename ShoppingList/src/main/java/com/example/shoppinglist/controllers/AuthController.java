@@ -73,7 +73,7 @@ public class AuthController {
 
             return "redirect:/login";
         }
-        if(this.authService.login(loginDTO)) {
+        if(!this.authService.login(loginDTO)) {
             redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
             redirectAttributes.addFlashAttribute("badCredentials", true);
 
@@ -83,8 +83,6 @@ public class AuthController {
 
 
     }
-
-
     @GetMapping("/logout")
     public String logout() {
         if(this.authService.isLogged()) {

@@ -1,17 +1,15 @@
 package com.example.shoppinglist.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "products")
 public class Product {
@@ -34,6 +32,9 @@ public class Product {
 
     @ManyToOne
     private Category category;
+
+    @ManyToOne
+    private User user;
 
 
 

@@ -18,7 +18,7 @@
                 th:each="error: ${#fields.errors()}" th:text="${error}"
                 class="text-danger">Error message
         </small>
-        <br/>  
+        <br/>
         <small
                 th:if="${badCredentials}"
                 class="text-danger">Incorrect username or password!

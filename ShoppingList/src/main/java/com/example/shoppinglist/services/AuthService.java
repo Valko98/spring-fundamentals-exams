@@ -45,19 +45,15 @@ public class AuthService {
     }
 
     public boolean login(UserLoginDTO loginDTO) {
-        Optional<User> byUsername = this.userRepository.findByUsername(loginDTO.getUsername());
-        if(byUsername.isPresent()) {
-            String encodedPassword = byUsername.get().getPassword();
-            String rawPassword = loginDTO.getPassword();
-            if(passwordEncoder.matches(rawPassword, encodedPassword)) {
-                this.loggedUser.login(byUsername.get());
-                return true;
-            }
-            return false;
+       Optional<User> user = this.userRepository
+               .findByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
 
-        }
+       if(user.isEmpty()) {
+           return false;
+       }
+       this.loggedUser.login(user.get());
 
-        return false;
+       return true;
     }
 
     public boolean isLogged() {
@@ -65,6 +61,7 @@ public class AuthService {
     }
     public void logout() {
         this.loggedUser.logout();
+
     }
 
     public long getLoggedUserId() {

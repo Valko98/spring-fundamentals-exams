@@ -50,7 +50,7 @@
                     th:field="*{password}"
                     th:errorclass="is-invalid"
                     th:class="${#fields.hasErrors('username')} ? 'form-control alert-danger' : 'form-control'"
-                    type="password"  id="password" name="password" />
+                    type="password" class="form-control" id="password" name="password" />
 
             <small class="text-danger invalid-feedback">
                 Password must be between 3 and 20 characters
